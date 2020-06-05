@@ -23,6 +23,9 @@ class Company(models.Model):
     technologies = models.ManyToManyField(Technology)
     size = models.IntegerField(default=1)  # how many employees
 
+    class Meta:
+        verbose_name_plural = 'Companies'
+
 
 class JobPost(models.Model):
     name = models.CharField(max_length=255)
