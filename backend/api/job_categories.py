@@ -1,4 +1,5 @@
 JOB_CATEGORIES_CHOICES = [
+    ('UN', 'Uncategorized'),
     ('FE', 'Front End Development'),
     ('BE', 'Back End Development'),
     ('FS', 'Full Stack Development'),

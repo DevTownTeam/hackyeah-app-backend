@@ -10,10 +10,6 @@ class Technology(models.Model):
         verbose_name_plural = 'Technologies'
 
 
-class JobCategory(models.Model):
-    name = models.CharField(choices=JOB_CATEGORIES_CHOICES, max_length=50)
-
-
 class Location(models.Model):
     location = models.TextField()
 
@@ -31,7 +27,7 @@ class JobPost(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
 
-    job_category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
+    job_category = models.CharField(choices=JOB_CATEGORIES_CHOICES, default='UN', max_length=50)
     technologies = models.ManyToManyField(Technology)
     salary = models.IntegerField(default=0)
 
