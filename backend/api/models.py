@@ -26,6 +26,7 @@ class Company(models.Model):
 class JobPost(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
 
     job_category = models.CharField(choices=JOB_CATEGORIES_CHOICES, default='UN', max_length=50)
     technologies = models.ManyToManyField(Technology)
