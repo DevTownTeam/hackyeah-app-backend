@@ -17,11 +17,12 @@ class Location(models.Model):
     location = models.TextField()
 
     def __str__(self):
-        return str(location)[:50]
+        return str(self.location)[:50]
 
 
 class Company(models.Model):
     name = models.CharField(max_length=255)
+    location = models.ForeignKey(Location, null=True, on_delete=models.SET_NULL)
     technologies = models.ManyToManyField(Technology)
     size = models.IntegerField(default=1)  # how many employees
 
