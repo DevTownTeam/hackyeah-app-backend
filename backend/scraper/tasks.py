@@ -15,13 +15,13 @@ def scrape(url):
 
 def parse_bulldog(document):
     result = []
-    offers_list = BeautifulSoup(document) \
+    offers_list = BeautifulSoup(document, features='lxml') \
         .find('ul', {'class': 'results-list list-unstyled content'})
 
-    for offer in offers_list.find_all('a'):
+    for offer in filter(lambda s: s['href'][0] != '#', offers_list.find_all('a')):
         data = {}
 
-        soup = BeautifulSoup(requests.get(offer['href']).text)
+        soup = BeautifulSoup(requests.get(offer['href']).text, features='lxml')
 
         data['name'] = soup.find('h1').string
         data['company'] = soup.find('div', {'class': 'company-name'}).string.strip()
