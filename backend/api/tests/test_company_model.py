@@ -21,3 +21,9 @@ class CompanyModelTests(TestCase):
 
         self.assertIn('JavaScript', technologies)
         self.assertEqual(len(self.company.technologies.all()), len(technologies))
+
+    def test_null_location(self):
+        """Test that setting location to null is allowed"""
+        self.company.location = None
+
+        self.assertIsNone(self.company.location)
