@@ -25,6 +25,10 @@ def parse_bulldog(document):
 
         data['name'] = soup.find('h1').string
         data['company'] = soup.find('div', {'class': 'company-name'}).string.strip()
+        data['description'] = soup \
+            .find('div', {'class': 'well well-shadow well-padded top-30'}) \
+            .get_text() \
+            .strip()
 
         result.append(data)
 

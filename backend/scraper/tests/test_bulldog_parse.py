@@ -9,6 +9,10 @@ class BulldogParseTests(TestCase):
         self.parsed = parse_bulldog(JOBS)
 
     def test_includes_scrum_master(self):
-        result = {'name': 'Scrum Master', 'company': 'Luxoft'}
+        true_result = {'name': 'Scrum Master', 'company': 'Luxoft'}
+        false_result = {'name': 'Master of Puppets', 'company': 'Metallica'}
 
-        self.assertDictEqual(self.parsed[0], result)
+        superset = set(self.parsed[0].items())
+
+        self.assertTrue(set(true_result.items()).issubset(superset))
+        self.assertFalse(set(false_result.items()).issubset(superset))
