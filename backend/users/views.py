@@ -8,7 +8,7 @@ from rest_framework import status
 
 class UserList(APIView):
     """
-    List all users, or create a new snippet.
+    List all users, or create a new user.
     """
     def get(self, request, format=None):
         users = get_user_model().objects.all()
