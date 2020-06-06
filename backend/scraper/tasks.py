@@ -13,7 +13,7 @@ def scrape(url):
     return offers
 
 
-def parse_bulldog(document):
+def parse_bulldog(document, only_one=False):
     result = []
     offers_list = BeautifulSoup(document, features='lxml') \
         .find('ul', {'class': 'results-list list-unstyled content'})
@@ -37,6 +37,18 @@ def parse_bulldog(document):
                 .find_all('span')
         ][::2] if tech_tags else None
 
+        salary_element = soup.find('div', {'class': 'money'})
+        salary_string = salary_element.string.replace(' ', '').split('-') if salary_element else None
+        if salary_string:
+            data['salary_lower'] = salary_string[0]
+            data['salary_upper'] = salary_string[1] if len(salary_string) == 2 else salary_string[0]
+        else:
+            data['salary_lower'] = None
+            data['salary_upper'] = None
+
         result.append(data)
+
+        if only_one:
+            break
 
     return result

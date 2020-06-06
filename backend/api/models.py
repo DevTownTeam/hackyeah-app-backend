@@ -40,7 +40,8 @@ class JobPost(models.Model):
 
     job_category = models.CharField(choices=JOB_CATEGORIES_CHOICES, default='UN', max_length=50)
     technologies = models.ManyToManyField(Technology)
-    salary = models.IntegerField(default=0)
+    salary_lower = models.IntegerField(default=0)
+    salary_upper = models.IntegerField(default=0)
 
     date = models.DateField(auto_now_add=True)
 
