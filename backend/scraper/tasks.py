@@ -30,6 +30,13 @@ def parse_bulldog(document):
             .get_text() \
             .strip()
 
+        tech_tags = soup.find('div', {'class': 'row technologies flex flex-stretch flex-wrap flex-desktop'})
+        data['technologies'] = [
+            tech.get_text().strip()
+            for tech in tech_tags
+                .find_all('span')
+        ][::2] if tech_tags else None
+
         result.append(data)
 
     return result

@@ -24,3 +24,8 @@ class BulldogParseTests(TestCase):
             'We are looking for experienced individual who would be working as Scrum Master.',
             self.parsed[0]['description']
         )
+
+    def test_includes_technologies(self):
+        """Test parsing technology names"""
+        self.assertIsNone(self.parsed[0]['technologies'])
+        self.assertListEqual(self.parsed[1]['technologies'], ['Angular', 'TypeScript', 'HTML', 'CSS', 'Bootstrap'])
