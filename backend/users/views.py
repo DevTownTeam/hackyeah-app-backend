@@ -8,7 +8,7 @@ from rest_framework import status
 
 class UserList(APIView):
     """
-    List all snippets, or create a new snippet.
+    List all users, or create a new snippet.
     """
     def get(self, request, format=None):
         users = get_user_model().objects.all()
@@ -24,7 +24,7 @@ class UserList(APIView):
 
 class UserDetail(APIView):
     """
-    Retrieve, update or delete a snippet instance.
+    Retrieve, update or delete a users instance.
     """
     def get_object(self, pk):
         try:
