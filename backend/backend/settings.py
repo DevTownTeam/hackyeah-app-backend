@@ -136,3 +136,5 @@ STATIC_URL = '/static/'
 django_heroku.settings(locals())
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+CELERY_BROKER_URL = os.getenv('REDIS_URL') or 'redis://localhost:6379/0'
